@@ -13,26 +13,26 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal:true,
+      isGlobal: true,
     }),
     UsersModule,
     DmsModule,
     ChannelsModule,
     WorkspacesModule,
     TypeOrmModule.forRoot({
-      type:'mysql',
-      host:'localhost',
+      type: 'mysql',
+      host: 'localhost',
       port: 3306,
       username: process.env.USERNAME,
-      password : process.env.PASSWORD,
-      database : process.env.DATABASE,
+      password: process.env.PASSWORD,
+      database: process.env.DATABASE,
       autoLoadEntities: true,
-      synchronize :true,
-      logging :true,
-      keepConnectionAlive : true
+      entities: ['src/**/*.entity.{ts,js}'],
+      logging: true,
+      keepConnectionAlive: true,
     }
-    )
-    
+    ),
+
   ],
   controllers: [AppController, DmsController],
   providers: [AppService, DmsService],

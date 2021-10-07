@@ -11,7 +11,7 @@ import { Workspaces } from './Workspaces';
 import { Users } from './Users';
 
 @Index('UserId', ['UserId'], {})
-@Entity('workspacemembers', { schema: 'sleact' })
+@Entity('workspacemembers')
 export class WorkspaceMembers {
   @CreateDateColumn()
   createdAt: Date;
