@@ -9,13 +9,30 @@ import { DmsController } from './dms/dms.controller';
 import { DmsModule } from './dms/dms.module';
 import { ChannelsModule } from './channels/channels.module';
 import { WorkspacesModule } from './workspaces/workspaces.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      isGlobal:true,
+    }),
     UsersModule,
     DmsModule,
     ChannelsModule,
     WorkspacesModule,
+    TypeOrmModule.forRoot({
+      type:'mysql',
+      host:'localhost',
+      port: 3306,
+      username: process.env.USERNAME,
+      password : process.env.PASSWORD,
+      database : process.env.DATABASE,
+      autoLoadEntities: true,
+      synchronize :true,
+      logging :true,
+      keepConnectionAlive : true
+    }
+    )
+    
   ],
   controllers: [AppController, DmsController],
   providers: [AppService, DmsService],
