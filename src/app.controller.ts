@@ -10,10 +10,8 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get("/hi")
-  getEnv():string{
-
+  @Get('/hi')
+  getEnv(): string {
     return this.appService.getEnv();
-
   }
 }

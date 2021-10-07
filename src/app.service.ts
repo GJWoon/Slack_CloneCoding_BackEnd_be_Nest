@@ -6,9 +6,7 @@ export class AppService {
     return 'hddrd';
   }
 
-  getEnv():string{
-
-return process.env.SECRET;
-
+  getEnv(): string {
+    return process.env.SECRET;
   }
 }

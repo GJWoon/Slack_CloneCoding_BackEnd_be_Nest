@@ -1,5 +1,8 @@
 import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 
+
+@ApiTags('Channel')
 @Controller('channels')
 export class ChannelsController {
 
@@ -15,6 +18,6 @@ createChannel(@Body()body){
 
 @Get(':name/members')
 getMembers(@Query()query){
-    
+
 }
 }

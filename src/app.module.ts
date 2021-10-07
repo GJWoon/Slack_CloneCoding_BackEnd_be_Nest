@@ -10,16 +10,18 @@ import { DmsModule } from './dms/dms.module';
 import { ChannelsModule } from './channels/channels.module';
 import { WorkspacesModule } from './workspaces/workspaces.module';
 @Module({
-  imports: [ConfigModule.forRoot(), UsersModule, DmsModule, ChannelsModule, WorkspacesModule],
+  imports: [
+    ConfigModule.forRoot(),
+    UsersModule,
+    DmsModule,
+    ChannelsModule,
+    WorkspacesModule,
+  ],
   controllers: [AppController, DmsController],
   providers: [AppService, DmsService],
 })
-export class AppModule implements NestModule{
-
-configure(consumer:MiddlewareConsumer) :any{
-
-  consumer.apply(LoggerMiddleware).forRoutes('*');
-
-}
-
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer): any {
+    consumer.apply(LoggerMiddleware).forRoutes('*');
+  }
 }
