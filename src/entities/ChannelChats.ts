@@ -10,7 +10,7 @@ import {
 } from 'typeorm';
 import { Users } from './Users';
 import { Channels } from './Channels';
-
+import { Injectable } from '@nestjs/common';
 
 @Entity({ schema: 'sleact', name: 'HJ' })
 export class ChannelChats {

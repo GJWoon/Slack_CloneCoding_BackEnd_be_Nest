@@ -5,7 +5,6 @@ export class AppService {
   getHello(): string {
     return 'hddrd';
   }
-
   getEnv(): string {
     return process.env.SECRET;
   }

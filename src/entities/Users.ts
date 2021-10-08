@@ -1,3 +1,5 @@
+import { User } from 'src/common/decorators/user.decorator';
+import { JoinRequestDto } from 'src/users/dto/join.request.dto';
 import {
   Column,
   CreateDateColumn,
@@ -21,8 +23,10 @@ import { Workspaces } from './Workspaces';
 @Index('email', ['email'], { unique: true })
 @Entity({ schema: 'sleact', name: 'users' })
 export class Users {
+
   @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
   id: number;
+
 
   @Column('varchar', { name: 'email', unique: true, length: 30 })
   email: string;
@@ -96,4 +100,18 @@ export class Users {
     },
   })
   Channels: Channels[];
+
+
+  static create(dto:JoinRequestDto){
+
+    return new Users(dto.email,dto.nickname,dto.password);
+    
+  }
+
+  constructor(requestEmail:string,requestNickName:string,hashPassword:string){
+    this.email = requestEmail;
+    this.nickname = requestNickName;
+    this.password = hashPassword;
+  }
+
 }
