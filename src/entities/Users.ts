@@ -113,5 +113,6 @@ export class Users {
     this.nickname = requestNickName;
     this.password = hashPassword;
   }
+  
 
 }

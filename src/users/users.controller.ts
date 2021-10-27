@@ -17,16 +17,9 @@ export class UsersController {
     description: '회원가입',
     summary: '회원가입'
   })
-  // @ApiResponse({
-  //   status:200,
-  //   description:'성공',
-  //   type:
-  // })
   @Post()
   postUsers(@Body() dto: JoinRequestDto) {
-
-     this.userService.postUsers(dto.email, dto.nickname, dto.password);
-
+     this.userService.postUsers(dto.email, dto.nickname, dto.password);      
   }
 
   @ApiResponse({
@@ -49,4 +42,12 @@ export class UsersController {
     res.clearCookie('connect.cid', { httpOnly: true });
     res.send('ok');
   }
+
+  //test
+  @Post('/test')
+  resisterTest(@Body() dto:JoinRequestDto){
+
+    this.userService.resisterUser(dto);
+  }
+
 }
