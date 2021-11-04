@@ -1,8 +1,9 @@
-import { Controller, Get, Post, Req, Res, Body, UseInterceptors } from "@nestjs/common";
+import { Controller, Get, Post, Req, Res, Body, UseInterceptors, UseGuards } from "@nestjs/common";
 import { ApiOperation, ApiResponse } from '@nestjs/swagger'; import { JoinRequestDto } from './dto/join.request.dto';
 import { UsersService } from './users.service';
 import { UndefinedToNullInterceptor } from '../common/Interceptors/undefinedToNull.interceptor';
 import UserDto from "../common/dto/user.dto,";
+import { LocalAuthGuard } from "src/auth/local-auth.guard";
 
 @UseInterceptors(UndefinedToNullInterceptor)
 @Controller('api/users')
@@ -31,6 +32,8 @@ export class UsersController {
     description: '서버 에러',
     status: 500,
   })
+
+  @UseGuards(LocalAuthGuard)
   @ApiOperation({ summary: '로그인' })
   @Post('/login')
   login(@Body() data: JoinRequestDto) {

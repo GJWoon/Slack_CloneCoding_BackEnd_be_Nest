@@ -22,6 +22,7 @@ import { Workspaces } from './entities/Workspaces'
 import { join } from 'path';
 import { UsersService } from './users/users.service';
 import { UsersController } from './users/users.controller';
+import { AuthModule } from './auth/auth.module';
 
 Logger.log(`--------${join(__dirname, '../', 'src', 'entities', '*.{ts,js}')}-------`)
 
@@ -49,7 +50,8 @@ Logger.log(`--------${join(__dirname, '../', 'src', 'entities', '*.{ts,js}')}---
       //entities: ['./entities1/*.*'],
       //entities: [Users, ChannelChats, ChannelMembers, Channels, DMs, Mentions, WorkspaceMembers, Workspaces],
       synchronize: false,
-    })
+    }),
+    AuthModule
   ],
   controllers: [AppController, DmsController,UsersController],
   providers: [AppService, DmsService,UsersService],
