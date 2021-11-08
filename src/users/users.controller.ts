@@ -19,10 +19,9 @@ export class UsersController {
     summary: '회원가입'
   })
   @Post()
-  postUsers(@Body() dto: JoinRequestDto) {
-     this.userService.postUsers(dto.email, dto.nickname, dto.password);      
+  async postUsers(@Body() dto: JoinRequestDto) {
+    await this.userService.postUsers(dto.email, dto.nickname, dto.password);
   }
-
   @ApiResponse({
     description: '성공',
     status: 200,
@@ -32,12 +31,11 @@ export class UsersController {
     description: '서버 에러',
     status: 500,
   })
-
   @UseGuards(LocalAuthGuard)
-  @ApiOperation({ summary: '로그인' })
   @Post('/login')
-  login(@Body() data: JoinRequestDto) {
-    this.userService.postUsers(data.email, data.nickname, data.password);
+  @ApiOperation({ summary: '로그인' })
+  async login(@Body() data: JoinRequestDto) {
+    return "Y";
   }
   @Post('/logout')
   logout(@Req() req, @Res() res) {
@@ -48,7 +46,7 @@ export class UsersController {
 
   //test
   @Post('/test')
-  resisterTest(@Body() dto:JoinRequestDto){
+  resisterTest(@Body() dto: JoinRequestDto) {
 
     this.userService.resisterUser(dto);
   }

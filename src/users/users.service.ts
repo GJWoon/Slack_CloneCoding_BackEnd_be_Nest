@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { HttpException, Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Users } from 'src/entities/Users';
 import { Repository } from 'typeorm';
@@ -17,12 +17,10 @@ export class UsersService {
         console.log(nickName);
         console.log(password);
         const user = await this.userRepository.findOne({ where: { email } });
-        console.log('console.log hihihi', user ?? 'hi');
-
-
+        console.log( 'userInfo', user ?? 'null user');
         if (user) {
             // user가 이미 존재한다면 Error
-            throw new Error('이미 존재하는 사용자입니다.');
+            throw new HttpException('이미 존재하는 사용자입니다.', 500);
         }
         const hashPassword: string = await bcrypt.hash(password, 12);
         let newUser: Users = new Users(email, nickName, hashPassword);
