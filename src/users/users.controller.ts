@@ -4,7 +4,7 @@ import { UsersService } from './users.service';
 import { UndefinedToNullInterceptor } from '../common/Interceptors/undefinedToNull.interceptor';
 import UserDto from "../common/dto/user.dto,";
 import { LocalAuthGuard } from "src/auth/local-auth.guard";
-
+import APIResponse from "src/common/dto/api.reponse";
 @UseInterceptors(UndefinedToNullInterceptor)
 @Controller('api/users')
 export class UsersController {
@@ -35,7 +35,7 @@ export class UsersController {
   @Post('/login')
   @ApiOperation({ summary: '로그인' })
   async login(@Body() data: JoinRequestDto) {
-    return "Y";
+    return new APIResponse('Y');
   }
   @Post('/logout')
   logout(@Req() req, @Res() res) {
