@@ -37,7 +37,7 @@ export class UsersService {
         let newUser: Users = new Users(email, nickName, hashPassword);
         // await this.userRepository.save({ email, nickName, hashPassword });
         try{
-            const returnUser : Users = await queryRunner.manager.getRepository(Users).save(newUser);
+            const returnUser : Users = await queryRunner.manager. (Users).save(newUser);
             await queryRunner.manager.getRepository(WorkspaceMembers).save({
                 UserId : returnUser.id,
                 WorkspaceId: 1,
@@ -60,22 +60,13 @@ export class UsersService {
     } 
 
     async resisterUser(dto: JoinRequestDto) {
-
         const email = dto.email;
-
         const user: Users = await this.userRepository.findOne({ where: { email } })
-
         console.log(user.nickname);
-
         if (user) {
             throw new Error('이미 존재하는 유저입니다.')
         }
-
         //const saveUser : Users = new Users(JoinRequestDto);
-
-
-
-
     }
 
 

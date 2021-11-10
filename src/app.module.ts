@@ -23,6 +23,8 @@ import { join } from 'path';
 import { UsersService } from './users/users.service';
 import { UsersController } from './users/users.controller';
 import { AuthModule } from './auth/auth.module';
+import { EventsModule } from './events/events.module';
+import { EventsGateway } from './events.gateway';
 
 Logger.log(`--------${join(__dirname, '../', 'src', 'entities', '*.{ts,js}')}-------`)
 
@@ -52,10 +54,11 @@ Logger.log(`--------${join(__dirname, '../', 'src', 'entities', '*.{ts,js}')}---
       //entities: [Users, ChannelChats, ChannelMembers, Channels, DMs, Mentions, WorkspaceMembers, Workspaces],
       synchronize: false,
     }),
-    AuthModule
+    AuthModule,
+    EventsModule
   ],
   controllers: [AppController, DmsController, UsersController],
-  providers: [AppService, DmsService, UsersService],
+  providers: [AppService, DmsService, UsersService, EventsGateway],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer): any {
