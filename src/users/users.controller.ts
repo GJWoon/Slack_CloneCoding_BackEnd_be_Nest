@@ -20,7 +20,7 @@ export class UsersController {
   })
   @Post()
   async postUsers(@Body() dto: JoinRequestDto) {
-    await this.userService.postUsers(dto.email, dto.nickname, dto.password);
+    return new APIResponse(await this.userService.postUsers(dto.email, dto.nickname, dto.password));
   }
   @ApiResponse({
     description: '성공',

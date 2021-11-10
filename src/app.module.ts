@@ -35,7 +35,7 @@ Logger.log(`--------${join(__dirname, '../', 'src', 'entities', '*.{ts,js}')}---
     DmsModule,
     ChannelsModule,
     WorkspacesModule,
-    TypeOrmModule.forFeature([Users]),
+    TypeOrmModule.forFeature([Users,WorkspaceMembers,ChannelMembers]),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -44,6 +44,7 @@ Logger.log(`--------${join(__dirname, '../', 'src', 'entities', '*.{ts,js}')}---
       password: process.env.PASSWORD,
       database: process.env.DATABASE,
       autoLoadEntities: true,
+      logging: true,
       //entities: ['../**/*.entities1.{ts,js}'],
       //entities: ["dist/**/*.entities1{.ts,.js}"],
 
@@ -53,8 +54,8 @@ Logger.log(`--------${join(__dirname, '../', 'src', 'entities', '*.{ts,js}')}---
     }),
     AuthModule
   ],
-  controllers: [AppController, DmsController,UsersController],
-  providers: [AppService, DmsService,UsersService],
+  controllers: [AppController, DmsController, UsersController],
+  providers: [AppService, DmsService, UsersService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer): any {
